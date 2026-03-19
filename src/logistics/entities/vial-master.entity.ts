@@ -8,6 +8,9 @@ export class VialMaster {
   @Column({ type: 'varchar', length: 100 })
   vial_name: string;
 
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  color_code: string | null;
+
   @Column({ type: 'int', default: 1 })
   display_order: number;
 
