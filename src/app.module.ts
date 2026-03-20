@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { LogisticsModule } from './logistics/logistics.module';
+import { ClientMaster } from './logistics/entities/client-master.entity';
+import { ClientMasterModule } from './client-master/client-master.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   controllers: [AppController],
@@ -23,6 +26,8 @@ import { LogisticsModule } from './logistics/logistics.module';
       logging: true
     }),
     LogisticsModule,
+    ClientMasterModule,
+    AuthModule
   ],
 })
 export class AppModule {}

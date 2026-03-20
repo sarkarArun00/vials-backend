@@ -1,14 +1,28 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { DataSource } from 'typeorm';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const allowedOrigins = [
+    'http://localhost:3001',
+    'http://localhost:3000',
+    'https://vials-tracking.nirnayanhealthcare.com',
+    'https://www.vials-tracking.nirnayanhealthcare.com',
+  ];
+
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Accept, Authorization',
   });
 
   app.useGlobalPipes(
@@ -18,9 +32,6 @@ async function bootstrap() {
     }),
   );
 
-  const port = 3000;
-  await app.listen(port);
-
-  console.log(`🚀 Server running on: http://localhost:${port}`);
+  await app.listen(3006);
 }
 bootstrap();

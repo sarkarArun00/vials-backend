@@ -8,6 +8,7 @@ import { LogisticsClientMap } from './entities/logistics-client-map.entity';
 import { VialMaster } from './entities/vial-master.entity';
 import { LogisticsEntry } from './entities/logistics-entry.entity';
 import { LogisticsEntryDetail } from './entities/logistics-entry-detail.entity';
+import { UserMaster } from './entities/user-master.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { LogisticsEntryDetail } from './entities/logistics-entry-detail.entity';
       VialMaster,
       LogisticsEntry,
       LogisticsEntryDetail,
+      UserMaster
     ]),
   ],
   controllers: [LogisticsController],

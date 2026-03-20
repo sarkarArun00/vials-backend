@@ -9,7 +9,7 @@ export class ClientMaster {
   client_name: string;
 
   @Column({ type: 'varchar', length: 50, nullable: true })
-  client_code: string;
+  client_code: string | null;
 
   @Column({ type: 'boolean', default: true })
   is_active: boolean;
